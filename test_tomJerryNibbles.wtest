@@ -1,17 +1,101 @@
 import tomJerryNibbles.*
 
-describe "Grupo de test" {
+/*
+- 1 1Al inicio, la velocidad máxima de Tom es 10 (su energía es 50)
+- 2 Si come a Jerry, la velocidad máxima pasa a ser  15.2 (su energía es 102)
+- 3 Si corre 24 metros, entonces su velocidad máxima pasa a ser 14 (su energía es 90)
+- 4 Si come a Nibbles, pasa a tener de velocidad máxima 18.7 (su energía es 137)
+- 5 si Jerry cumple años (3 años de edad), y luego Tom lo vuelve a comer, pasaría a tener 25.9 (su energia es 209)  
+- 6 si corre 38 metros su velocidad pasa a ser 24 (su energia es 190)
 
-  test "test 1" {
-    assert.equals(100, 50+50)
+*/
+
+describe "mis primeros testings" {
+//1
+  test "Al inicio, la velocidad máxima de Tom es 10 (su energía es 50)" {
+    assert.equals(10, tom.velocidadMaxima())
+  }
+//2
+  test "Si come a Jerry, la velocidad máxima pasa a ser  15.2 (su energía es 102)" {
+    tom.come(jerry)
+    assert.equals(15.2, tom.velocidadMaxima())
+  }
+//3
+  test "Si corre 24 metros, entonces su velocidad máxima pasa a ser 14 (su energía es 90)" {
+    tom.come(jerry)
+    tom.corre(24)
+    assert.equals(14, tom.velocidadMaxima())
+  }
+//4
+  test "Si come a Nibbles, pasa a tener de velocidad máxima 18.7 (su energía es 137)" {
+    tom.come(jerry)
+    tom.corre(24)
+    tom.come(nibbles)
+    assert.equals(18.7, tom.velocidadMaxima())
+  }
+//5
+  test "si Jerry cumple años (3 años de edad), y luego Tom lo vuelve a comer, pasaría a tener 25.9 (su energia es 209)" {
+    tom.come(jerry)
+    tom.corre(24)
+    tom.come(nibbles)
+    jerry.cumpleAñios()
+    tom.come(jerry)
+    assert.equals(25.9, tom.velocidadMaxima())
+  }
+//6
+  test "si corre 38 metros su velocidad pasa a ser 24 (su energia es 190)" {
+    tom.come(jerry)
+    tom.corre(24)
+    tom.come(nibbles)
+    jerry.cumpleAñios()
+    tom.come(jerry)
+    tom.corre(38)
+    assert.equals(24, tom.velocidadMaxima())
+  }
+}
+
+describe "probando a pato" {
+  test "a tom cuando trata de comer a pato, el grazna y no le aumenta la energia(su energia es de 50)" {
+    tom.come(pato)
+    assert.equals(50, tom.energia())
+  }
+  test "cuando pato grazna devuelve: soy un pato no me comas Quack Quack" {
+    assert.equals("soy un pato no me comas Quack Quack", pato.graznar())
   }
 
-  test "test 3" {
-    assert.that(true)
+  test" tom se come a jerry, a nibbles, corre 98 metros su energia es 100 y si come a pato sigue siendo 100"{
+    tom.come(jerry)
+    tom.come(nibbles)
+    tom.corre(98)
+    tom.come(pato)
+    assert.equals(100, tom.energia())
   }
+}
 
-  test "test 4" {
-    assert.notThat(false)
+describe "desarrollando una prueva de 0 energia apenas comer un raton" {
+  test "si tom corre 100 metros, luego come a jerry y corre 104 metros su energia es 0" {
+    tom.corre(100)
+    tom.come(jerry)
+    tom.corre(104)
+    assert.equals(0, tom.energia())
   }
-
+  test "si tom come a nebbles y luego corre 94 metros su energia es 0 y si trata de comer a pato sigue siendo 0 " {
+    tom.corre(100)
+    tom.come(jerry)
+    tom.corre(104)
+    tom.come(nibbles)
+    tom.corre(94)
+    tom.come(pato)
+    assert.equals(0, tom.energia())
+  }
+  test"si tom vuelve a tratar de comer a pato su velocidadmaxima es 5(su energia es 0)"{
+    tom.corre(100)
+    tom.come(jerry)
+    tom.corre(104)
+    tom.come(nibbles)
+    tom.corre(94)
+    tom.come(pato)
+    tom.come(pato)
+    assert.equals(5, tom.velocidadMaxima())
+  }
 }

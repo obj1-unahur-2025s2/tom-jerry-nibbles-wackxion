@@ -44,7 +44,7 @@ object tom {
 object jerry {
   var edad = 2
 
-    method cumpleAnios() { edad += 1}
+    method cumpleAñios() { edad += 1}
     method peso() {return edad * 20}
     method edad() {return edad}
     method puedeGraznar() = false
@@ -74,5 +74,4 @@ object pato {
     method edad() {return edad}
     method puedeGraznar() = true
     method graznar() {return "soy un pato no me comas Quack Quack"}
-    
 }
