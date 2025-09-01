@@ -2,7 +2,8 @@
 
 object tom {
     var energia = 50
-    var ratonesComido = 0
+    var ratonesComidos = null
+    var metrosRecorridos = 0
 
     method puedeCazar(distancia) { 
         return energia > (distancia / 2)
@@ -19,25 +20,27 @@ object tom {
             }
     }
 
+    method metrosRecorridos() {
+        return metrosRecorridos
+    }
     method corre(metros) { 
-        energia -= (metros / 2)
+        energia -= metros / 2
+        metrosRecorridos += metros
     }
 
     method come(raton) {
         if(not raton.puedeGraznar()){
             energia += 12 + raton.peso(); 
-            ratonesComido = raton;
+            ratonesComidos = raton;
             raton.graznar()}
         return raton.graznar()
 
     }
+    method ratonesComido() = ratonesComidos
 
     method velocidadMaxima() = (5 + energia/10).max(0)
-
    
 }
-
-
 object jerry {
   var edad = 2
 
@@ -70,5 +73,6 @@ object pato {
     method peso() {return edad * 10}
     method edad() {return edad}
     method puedeGraznar() = true
-    method graznar() {return " soy un pato no me comas Quack Quack"}
+    method graznar() {return "soy un pato no me comas Quack Quack"}
+    
 }
